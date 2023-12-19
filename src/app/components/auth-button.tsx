@@ -13,8 +13,10 @@ export default function AuthButton() {
   const [isOpen, setIsOpen] = React.useState<boolean>(false)
 
   const openHandler = () => setIsOpen(!isOpen)
-
-  console.log('auth', status)
+  const closeHandler = () => {
+    console.log('Blur')
+    setIsOpen(false)
+  }
 
   if (status === 'unauthenticated') {
     return (
@@ -27,10 +29,13 @@ export default function AuthButton() {
   ]
 
   return (
-    <div className="relative inline-block">
-      <p onClick={openHandler} className="text-sm">
+    <button 
+      onClick={openHandler}
+      onBlur={closeHandler}
+      className="relative inline-block">
+      <span  className="text-sm">
        {data?.user.name}
-      </p>
+      </span>
       {
         isOpen && (
           <div id="dropdown" className="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2 overflow-hidden">
@@ -54,6 +59,6 @@ export default function AuthButton() {
           </div>
         )
       }
-    </div>
+    </button>
   )
 }
