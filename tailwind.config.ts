@@ -13,6 +13,14 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      animation: {
+        'brief-message': 'message .3s linear forwards'
+      },
+      keyframes: {
+        message: {
+          '100%': { transform: 'translateY(-7rem)' },
+        }
+      }
     },
   },
   plugins: [],

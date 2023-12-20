@@ -12,4 +12,11 @@ const Spinner = () => {
   )
 }
 
+export const FullPageLoader = () => {
+  return (
+    <div className="fixed top-1/2 left-1/2">
+      <Spinner />
+    </div>
+  )
+}
 export default Spinner

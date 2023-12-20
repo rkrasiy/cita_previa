@@ -9,7 +9,8 @@ declare module "next-auth" {
     user: {
       _id: string
       password: string
-      full_name: string
+      full_name?: string
+      icon?: string
     } & DefaultSession["user"]
   }
 }

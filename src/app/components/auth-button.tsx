@@ -1,10 +1,9 @@
 "use client"
 
-import React, { useEffect } from "react"
-import { redirect, useRouter } from "next/navigation"
-import { Button } from "./button"
+import React from "react"
+import { useRouter } from "next/navigation"
+import Button from "./button"
 import { signOut, useSession } from "next-auth/react"
-import Link from "next/link"
 
 
 export default function AuthButton() {
@@ -12,11 +11,8 @@ export default function AuthButton() {
   const navigate = useRouter()
   const [isOpen, setIsOpen] = React.useState<boolean>(false)
 
-  const openHandler = () => setIsOpen(!isOpen)
-  const closeHandler = () => {
-    console.log('Blur')
-    setIsOpen(false)
-  }
+  const openHandler = () => setIsOpen(true)
+  const closeHandler = () => setIsOpen(false)
 
   if (status === 'unauthenticated') {
     return (
@@ -28,17 +24,19 @@ export default function AuthButton() {
     {text: "Dashboard", action: () => navigate.push("/dashboard")}
   ]
 
+  console.log(data)
+  
   return (
     <button 
       onClick={openHandler}
       onBlur={closeHandler}
-      className="relative inline-block">
-      <span  className="text-sm">
+      className="relative inline-block ml-auto px-4">
+      <span className="text-sm">
        {data?.user.name}
       </span>
       {
         isOpen && (
-          <div id="dropdown" className="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2 overflow-hidden">
+          <div className="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 mt-2 overflow-hidden right-4">
             <p className="px-4 py-2">
               {data?.user.name}
             </p>

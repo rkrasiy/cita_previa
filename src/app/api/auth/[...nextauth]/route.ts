@@ -1,4 +1,4 @@
-import { hashPassword, login } from "@/app/lib/auth"
+import { login } from "@/app/lib/auth"
 import NextAuth from "next-auth/next"
 import CredentialsProvider from "next-auth/providers/credentials"
 
@@ -18,7 +18,6 @@ const handler = NextAuth({
         try {
 
           const user = await login(credentials.email, credentials.password)
-          
           return user
         } catch (error) {
           console.log(error)
@@ -30,7 +29,9 @@ const handler = NextAuth({
   pages: {
     signIn: "/login",
   },
-  session: { strategy: "jwt" }
+  session: { 
+    strategy: "jwt"
+ }
 })
 
 export { handler as GET, handler as POST }
